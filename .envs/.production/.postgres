@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=ovu
+POSTGRES_USER=PDIQwBRBjmGuZHJpiaXRLttvvhSUJvMF
+POSTGRES_PASSWORD=bfZh8uF0jma59fl9ZzeHePS1R3zA4kcobHC3E3bumjZ3PxCdfwzYDIAo32EsNVKw
