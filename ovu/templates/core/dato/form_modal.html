@@ -1,0 +1,28 @@
+{% load crispy_forms_tags crispy_forms_field %}
+
+<div class="modal-dialog modal-xl" data-backdrop="static" role="dialog" style="z-index: 10000!important;">
+  <div class="modal-xl" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+
+        </h5>
+        <a type="button" class="close" data-dismiss="modal" aria-label="Close" href="#" onclick="return cerrar_modal()">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="modal-footer">
+          <a type="button" class="btn btn-secondary" data-dismiss="modal" href="#" onclick="return cerrar_modal()">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+      </form>
+      </form>
+    </div>
+  </div>
+</div>

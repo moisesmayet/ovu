@@ -1,0 +1,126 @@
+{% load my_customs_tags %}
+
+<div class="modal-dialog modal-xl" data-backdrop="static" role="dialog" style="z-index: 10000!important;">
+  <div class="modal-xl" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ indicador.nombre }} <span
+                class="mamey-uapa">({{ indicador.codigo }})</span></h5>
+        <a type="button" class="close" data-dismiss="modal" aria-label="Close" href="#" onclick="return cerrar_modal()">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="faq-content-area">
+          <!-- Section Title Start -->
+          {#          <div class="section-title text-left mb-50" data-aos="fade-up">#}
+          {#            <span class="sub-title">Everything <strong>MaxCoach</strong></span>#}
+          {#            <h2 class="title fz-48">Construct A <span>Stunning</span> Career Perspective</h2>#}
+          {#          </div>#}
+          <!-- Section Title End -->
+
+
+          <div class="mx-accordion" id="accordionExample">
+
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <a href="#" class="acc-btn border-0" data-toggle="collapse" data-target="#collapseOne"
+                     aria-expanded="true" aria-controls="collapseOne">
+                    Tabla de datos
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  {% if anos_tabs %}
+                    <!-- Course Details Wrapper Start -->
+                    <div class="course-details-wrapper">
+                      <div class="course-nav-tab">
+                        <ul class="nav">
+                          {% for ano in anos_tabs %}
+                            <li><a class="{% if forloop.counter == 1 %}active{% endif %}" data-toggle="tab"
+                                   href="#{{ ano|trim }}">{{ ano }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                      <div class="tab-content">
+                        {% for ano in anos_tabs %}
+                          <div id="{{ ano|trim }}" class="tab-pane fade show {% if forloop.counter == 1 %}active{% endif %}">
+                            <div class="course-overview">
+                              {#                      <h3 class="title">Course Description</h3>#}
+                              <div class="table-responsive">
+                                {% autoescape off %}
+                                  {{ tablas|index:forloop.counter0|safe }}
+                                {% endautoescape %}
+                              </div>
+
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                    <!-- Course Details Wrapper End -->
+                  {% else %}
+                    <div class="table-responsive">
+                      {% if indicador.codigo in indicadores_tabs %}
+                        {% for tabla in indicador.datos_html_table %}
+                          {% autoescape off %}
+                            {{ tabla|safe }}
+                          {% endautoescape %}
+                        {% endfor %}
+                      {% else %}
+
+                        {% autoescape off %}
+                          {{ indicador.datos_html_table|safe }}
+                        {% endautoescape %}
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+
+
+            {% if indicador.codigo in indicador.indicadores_porcentuales %}
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h5 class="mb-0">
+                    <a href="#" class="acc-btn border-0 collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                       aria-expanded="false" aria-controls="collapseTwo">
+                      Tabla porcentual
+                    </a>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {% autoescape off %}
+                      {{ indicador.datos_tabla_porcentual|safe }}
+                    {% endautoescape %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+
+        {#        {% autoescape off %}#}
+        {#          {{ indicador.datos_tabla_porcentual|safe }}#}
+        {#        {% endautoescape %}#}
+
+        <div class="modal-footer">
+          <a type="button" class="btn btn-secondary" data-dismiss="modal" href="#" onclick="return cerrar_modal()">Cerrar</a>
+        </div>
+      </div>
+      </form>
+      </form>
+    </div>
+  </div>
+</div>

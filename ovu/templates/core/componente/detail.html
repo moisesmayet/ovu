@@ -1,0 +1,339 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  Detalles del Componente
+{% endblock %}
+
+{% block main_content %}
+
+  <!-- Page Banner Section Start -->
+  <div class="page-banner-section section section-padding-200 header-top-banner"
+       data-bg-image="{% static 'images/page-banner/bg.jpg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="page-banner-title">
+            <div class="title">Trabajamos para facilitar para la toma de decisiones</div>
+          </div>
+          <div>
+            <a href="/core/#componentes">
+                <input type="button" class="header-top-button" value="Conoce más">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Banner Section End -->
+
+
+  <!-- Page Title Section Start -->
+  <div class="page-title-section section">
+    <div class="page-title">
+      <div class="container">
+        <h1 class="title">{{ componente.nombre }} <span class="mamey-uapa">({{ componente.codigo }})</span></h1>
+      </div>
+    </div>
+    {#            <div class="page-breadcrumb">#}
+    {#                <div class="container">#}
+    {#                    <ul class="breadcrumb">#}
+    {#                        <li><a href="index.html">Home</a></li>#}
+    {#                        <li class="current">Courses Details</li>#}
+    {#                    </ul>#}
+    {#                </div>#}
+    {#            </div>#}
+  </div>
+  <!-- Page Title Section End -->
+
+  <!-- Course Details Section Start -->
+  <div class="section">
+    <div class="container">
+      <div class="row max-mb-n50">
+
+        <div class="col-lg-8 col-12 order-lg-1 max-mb-50">
+          <!-- Course Details Wrapper Start -->
+          <div class="course-details-wrapper">
+            <div class="course-nav-tab">
+              <ul class="nav">
+                <li><a class="active" data-toggle="tab" href="#overview">Visión general</a></li>
+                <li><a data-toggle="tab" href="#indicadores">Indicadores</a></li>
+                {#                <li><a data-toggle="tab" href="#datos">Datos</a></li>#}
+                {#                <li><a data-toggle="tab" href="#reviews">Gráficos</a></li>#}
+              </ul>
+            </div>
+            <div class="tab-content">
+              <div id="overview" class="tab-pane fade show active">
+                <div class="course-overview">
+                  <h3 class="title">Descripción del componente</h3>
+                  {% if componente.descripcion is not None %}
+                    <p>{{ componente.descripcion|safe }} </p>
+                  {% endif %}
+
+                  <div class="row align-content-center p-5">
+                    <div class="icon col-4"><img class="svgInject" src="{{ componente.icon }}" alt="">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div id="indicadores" class="tab-pane fade">
+                <div class="course-curriculum">
+                  <ul class="curriculum-sections">
+                    <li class="single-curriculum-section">
+                      <div class="section-header">
+                        <div class="section-left">
+
+                          {#                          <h5 class="title">Change simplification</h5>#}
+                          {#                          <p class="section-desc">General introduction to customer-centric strategies</p>#}
+
+                        </div>
+                      </div>
+                      <ul class="section-content">
+
+                        {% for ind in componente.indicadores_list %}
+                          <li class="course-item">
+                            <div class="section-item-link lesson">
+                              <a class="item-name" href="#"
+                                 onclick="return abrir('{% url 'core:indicador_modal_detail' ind.pk %}')">{{ ind.nombre }}
+                                ({{ ind.codigo }})</a>
+                              <div class="course-item-meta">
+                                {#                                                                <span class="item-meta duration">30 min</span>#}
+                                {#                                <span class="item-meta count-questions">3 questions</span>#}
+                                <a class="item-meta count-questions" href="#"
+                                   onclick="return abrir('{% url 'core:indicador_modal_detail' ind.pk %}')"> <i
+                                  class="fas fa-info-circle"></i> Detalles </a>
+
+                                {% if ind.tiene_datos %}
+                                  <a class="item-meta duration" href="#"
+                                     onclick="return abrir('{% url 'core:indicador_tablas' ind.pk %}')"> <i
+                                    class="fas fa-table"></i> Datos </a>
+
+                                  {% if ind.con_graficas %}
+                                    <a class="item-meta duration" href="#"
+                                       onclick="return abrir('{% url 'core:indicador_graficas' ind.pk %}')"> <i
+                                      class="fas fa-chart-bar"></i> Gráfica </a>
+                                  {% endif %}
+
+
+                                  <a class="item-meta count-questions duration"
+                                     href="{% url 'core:indicador_descargar' ind.pk %}"> <i
+                                    class="fas fa-file-excel"></i> Descargar</a>
+                                {% endif %}
+
+                              </div>
+                            </div>
+                          </li>
+                        {% endfor %}
+
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                &nbsp;
+              </div>
+
+              <div id="datos" class="tab-pane fade">
+                <div class="row">
+                  {% for ind in componente.indicadores_list %}
+
+                    {% if ind.datos_html_table != None %}
+                      <h3><small class="text-muted">{{ ind.nombre }}<span class="mamey-uapa"> ({{ ind.codigo }})</span></small>
+                        {% if ind.codigo == 'PA.01' or ind.codigo == 'PA.04' %}
+                          <a class="btn btn-primary btn-sm" href="#"
+                             onclick="return abrir('{% url 'core:indicador_tabla_porcentual' ind.pk %}')">
+                            <span class="text text-white">Ver Tabla porcentual</span>
+                          </a>
+                        {% endif %}
+                      </h3>
+                      <br/>
+                      <div class="table-responsive">
+                        {% autoescape off %}
+                          {#                          {{ ind.datos_html_table|safe }}#}
+                        {% endautoescape %}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+
+                </div>
+              </div>
+
+              <div id="reviews" class="tab-pane fade">
+                {% for ind in componente.indicadores_list %}
+                  {% if ind.datos_html_table != None %}
+                    <div class="course-reviews">
+                      <div class="course-rating">
+                        <h3><small class="text-muted">{{ ind.nombre }}<span
+                          class="mamey-uapa"> ({{ ind.codigo }})</span></small>
+                        </h3>
+                      </div>
+                      <div class="course-reviews-area">
+                        <ul class="course-reviews-list">
+                          <li class="review">
+                            {% autoescape off %}
+                              {#                              {{ ind.datos_plot_bar }}#}
+                              {#                              {{ ind.datos_plot_pie }}#}
+                              {#                              {{ ind.datos_plot_line }}#}
+                              {#                              {{ ind.datos_plot_estadisticos }}#}
+                              {#                              {{ ind.datos_plot_sunburst }}#}
+                            {% endautoescape %}
+                            {#                            <div class="review-container">#}
+                            {#                              <div class="review-author">#}
+                            {#                                <img src="assets/images/review-author/author1.jpeg" alt="author">#}
+                            {#                              </div>#}
+                            {#                              <div class="review-content">#}
+                            {#                                <h4 class="title">ednawatson</h4>#}
+                            {#                                <div class="review-stars-rated" title="5 out of 5 stars">#}
+                            {#                                  <div class="review-stars empty"></div>#}
+                            {#                                </div>#}
+                            {#                                <h5 class="review-title">Cover all my needs </h5>#}
+                            {#                                <div class="review-text">#}
+                            {#                                  The course identify things we want to change and then figure out the things that need#}
+                            {#                                  to#}
+                            {#                                  be done to create the desired outcome. The course helped me in clearly define problems#}
+                            {#                                  and#}
+                            {#                                  generate a wider variety of quality solutions. Support more structures analysis of#}
+                            {#                                  options#}
+                            {#                                  leading to better decisions.#}
+                            {#                                </div>#}
+                            {#                              </div>#}
+                            {#                            </div>#}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <!-- Course Details Wrapper End -->
+        </div>
+
+        <div class="col-lg-4 col-12 order-lg-2 max-mb-50" id="sticky-sidebar">
+          <div class="sidebar-widget-wrapper pr-0">
+            <div class="sidebar-widget">
+              <div class="sidebar-widget-content">
+                <div class="sidebar-entry-course-info">
+                  <div class="course-price">
+                                            <span class="meta-label">
+                                                <i class="meta-icon far fa-id-card"></i>
+                                                Código
+                                            </span>
+                    <span class="meta-value">
+                                                <span class="price">{{ componente.codigo }}<span
+                                                  class="decimals-separator"></span></span>
+                                            </span>
+                  </div>
+                  <div class="course-meta">
+                    <div class="course-instructor">
+                                                <span class="meta-label">
+                                                    <i class="far fa-chalkboard-teacher"></i>
+                                                    Responsable
+                                                </span>
+                      <span class="meta-value">Departamento A.C.</span>
+                    </div>
+                    {#                    <div class="course-duration">#}
+                    {#                                                <span class="meta-label">#}
+                    {#                                                    <i class="far fa-clock"></i>#}
+                    {#                                                    Duration#}
+                    {#                                                </span>#}
+                    {#                      <span class="meta-value">15 weeks</span>#}
+                    {#                    </div>#}
+                    <div class="course-lectures">
+                                                <span class="meta-label">
+                                                    <i class="far fa-file-alt"></i>
+                                                    Indicadores
+                                                </span>
+                      <span class="meta-value">{{ componente.total_indicadores }}</span>
+                    </div>
+
+                    {#                    <div class="course-students">#}
+                    {#                                                <span class="meta-label">#}
+                    {#                                                    <i class="far fa-user-alt"></i>#}
+                    {#                                                    Enrolled#}
+                    {#                                                </span>#}
+                    {#                      <span class="meta-value">629 students</span>#}
+                    {#                    </div>#}
+                    {#                    <div class="course-language">#}
+                    {#                                                <span class="meta-label">#}
+                    {#                                                    <i class="far fa-language"></i>#}
+                    {#                                                    Language#}
+                    {#                                                </span>#}
+                    {#                      <span class="meta-value">English</span>#}
+                    {#                    </div>#}
+                    {#                    <div class="course-time">#}
+                    {#                                                <span class="meta-label">#}
+                    {#                                                    <i class="far fa-calendar"></i>#}
+                    {#                                                    Deadline#}
+                    {#                                                </span>#}
+                    {#                      <span class="meta-value">05 Jan  2019</span>#}
+                    {#                    </div>#}
+                  </div>
+
+                  <div class="lp-course-buttons">
+                    {#                    <a class="btn btn-primary btn-hover-secondary btn-width-100" href="#"#}
+                    {#                       onclick="return abrir('{% url 'core:dato_add' componente.pk %}')"#}
+                    {#                    >#}
+                    {#                      <i class="far fa-save"></i> &nbsp;#}
+                    {#                      <span class="text text-white">Registrar Datos</span>#}
+                    {#                    </a>#}
+
+                  </div>
+                  {#                  <div class="entry-course-share">#}
+                  {#                    <div class="share-media">#}
+                  {##}
+                  {#                      <div class="share-label">Share this course</div>#}
+                  {#                      <span class="share-icon far fa-share-alt"></span>#}
+                  {##}
+                  {#                      <div class="share-list">#}
+                  {#                        <a class="hint--bounce hint--top hint--theme-two" aria-label="Facebook" target="_blank"#}
+                  {#                           href="JavaScript:Void(0);"><i class="fab fa-facebook-f"></i></a>#}
+                  {##}
+                  {#                        <a class="hint--bounce hint--top hint--theme-two" aria-label="Twitter" target="_blank"#}
+                  {#                           href="JavaScript:Void(0);"><i class="fab fa-twitter"></i></a>#}
+                  {##}
+                  {#                        <a class="hint--bounce hint--top hint--theme-two" aria-label="Linkedin" target="_blank"#}
+                  {#                           href="JavaScript:Void(0);"><i class="fab fa-linkedin"></i></a>#}
+                  {##}
+                  {#                        <a class="hint--bounce hint--top hint--theme-two" aria-label="Tumblr" target="_blank"#}
+                  {#                           href="JavaScript:Void(0);"><i class="fab fa-tumblr-square"></i></a>#}
+                  {#                      </div>#}
+                  {#                    </div>#}
+                  {#                  </div>#}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Course Details Section End -->
+
+{% endblock %}
+
+{% block modal %}
+  <div class="modal" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog"
+       aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 10000">
+    <div class="modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

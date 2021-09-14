@@ -1,0 +1,71 @@
+{% load static %}
+{% url 'core:home' as home_url %}
+{% url 'core:about_us' as about_us_url %}
+{% url 'core:componentes' as componentes_url %}
+{% url 'core:faq' as faq_url %}
+{% url 'core:informes' as informes_url %}
+<!-- Header Section Start -->
+<div class="header-section header-fluid sticky-header section">
+  <div class="header-inner">
+    <div class="container position-relative">
+      <div class="row justify-content-between align-items-center">
+
+        <!-- Header Logo Start -->
+        <div class="col-xl-3 col-auto">
+          <div class="header-logo">
+            <a href="{{ home_url}}" style="max-width: 245px!important;">
+              <img class="dark-logo" src="{% static 'images/logo/ovu.png' %}" alt="Learts Logo">
+              <img class="light-logo" src="{% static 'images/logo/light-logo.png' %}" alt="Learts Logo">
+            </a>
+          </div>
+        </div>
+        <!-- Header Logo End -->
+
+        <!-- Header Main Menu Start -->
+        <div class="col d-none d-xl-block position-static">
+          <nav class="site-main-menu">
+            <ul>
+{#              <li class="position-static">#}
+{#                <a href="{{ home_url }}"><span class="menu-text">Inicio</span></a>#}
+{#              </li>#}
+              <li class="position-static">
+                <a href="{{ home_url }}#componentes"><span class="menu-text">Componentes</span></a>
+              </li>
+              <li class="position-static">
+                <a href="{{ informes_url }}"><span class="menu-text">Informes</span></a>
+              </li>
+              <li class="position-static">
+                <a href="{{ about_us_url }}"><span class="menu-text">Quienes Somos</span></a>
+              </li>
+              <li>
+                <a class="active" href="{{ faq_url }}">Preguntas frecuentes</a>
+              </li>
+
+            </ul>
+          </nav>
+        </div>
+        <!-- Header Main Menu End -->
+
+        <!-- Header Right Start -->
+        <div class=" col-xl-3 col-auto">
+          <div class="header-right">
+            <div class="inner">
+              <!-- Header Mobile Menu Toggle Start -->
+              <div class="header-mobile-menu-toggle d-xl-none ml-sm-2">
+                <button class="toggle">
+                  <i class="icon-top"></i>
+                  <i class="icon-middle"></i>
+                  <i class="icon-bottom"></i>
+                </button>
+              </div>
+              <!-- Header Mobile Menu Toggle End -->
+            </div>
+          </div>
+        </div>
+        <!-- Header Right End -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Header Section End -->

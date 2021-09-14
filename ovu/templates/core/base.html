@@ -1,0 +1,291 @@
+{% load static %}
+{% url 'core:home' as home_url %}
+{% url 'core:about_us' as about_us_url %}
+{% url 'core:componentes' as componentes_url %}
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}OVU{% endblock title %}</title>
+  <meta name="robots" content="noindex, follow"/>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon -->
+{#  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">#}
+
+  <!-- CSS
+============================================ -->
+  {% include 'layouts/css.html' %}
+  {% block css %}  {% endblock css %}
+</head>
+
+<body>
+
+<div id="page" class="section">
+  {% include 'layouts/menu_header.html' %}
+
+  {% block main_content %}  {% endblock %}
+
+
+  {% include 'layouts/footer.html' %}
+
+  <!-- Newsletter Popup Start -->
+  {#  <div id="max-popup" class="max-popup-section section">#}
+  {#    <div class="max-popup-dialog animated fadeInUp">#}
+  {#      <button class="max-popup-close"><i class="fal fa-times"></i></button>#}
+  {#      <div class="max-popup-dialog-inner">#}
+  {#        <div class="row">#}
+  {#          <div class="col-md-5 col-12 d-none d-md-block">#}
+  {#            <div class="freecourse-popup-image">#}
+  {#              <img src="assets/images/others/popup-free-course.png" alt="">#}
+  {#            </div>#}
+  {#          </div>#}
+  {#          <div class="col-md-7 col-12 align-self-center">#}
+  {#            <div class="freecourse-popup-content">#}
+  {#              <h6 class="sub-title">Get Our Course free</h6>#}
+  {#              <h2 class="title">Awesome for Website</h2>#}
+  {#              <div class="freecourse-download-form">#}
+  {#                <form action="#">#}
+  {#                  <div class="row max-mb-n20">#}
+  {#                    <div class="col-12 max-mb-20">#}
+  {#                      <input type="email" placeholder="Your E-mail">#}
+  {#                    </div>#}
+  {#                    <div class="col-12 max-mb-20">#}
+  {#                      <button class="btn btn-primary btn-hover-secondary w-100">Download now</button>#}
+  {#                    </div>#}
+  {#                    <div class="col-12 max-mb-20">#}
+  {#                      <small class="form-text text-center"><i class="fal fa-lock-alt mr-2"></i> Your infomation will#}
+  {#                        never be shared with any third party</small>#}
+  {#                    </div>#}
+  {#                  </div>#}
+  {#                </form>#}
+  {#              </div>#}
+  {#            </div>#}
+  {#          </div>#}
+  {#        </div>#}
+  {#      </div>#}
+  {#    </div>#}
+  {#  </div>#}
+  <!-- Newsletter Popup End -->
+
+  <!-- Scroll Top Start -->
+  <a href="#" class="scroll-top" id="scroll-top">
+    <i class="arrow-top fal fa-long-arrow-up"></i>
+    <i class="arrow-bottom fal fa-long-arrow-up"></i>
+  </a>
+  <!-- Scroll Top End -->
+</div>
+
+<div id="site-main-mobile-menu" class="site-main-mobile-menu">
+  <div class="site-main-mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <div class="mobile-menu-logo">
+        <a href="{{ home_url }}"><img src="{% static 'images/logo/ovu.png' %}" alt=""></a>
+      </div>
+      <div class="mobile-menu-close">
+        <button class="toggle">
+          <i class="icon-top"></i>
+          <i class="icon-bottom"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu-content">
+      <nav class="site-mobile-menu">
+        <ul>
+          <li class="position-static">
+            <a href="{{ home_url }}"><span class="menu-text">Inicio</span></a>
+          </li>
+          <li class="position-static">
+            <a href="{{ about_us_url }}"><span class="menu-text">Quienes Somos</span></a>
+          </li>
+          <li class="position-static">
+            <a href="{{ componentes_url }}"><span class="menu-text">Componentes</span></a>
+          </li>
+          {#          <li class="has-children position-static">#}
+          {#            <a href="#"><span class="menu-text">Home</span></a>#}
+          {#            <span class="menu-toggle"><i class="far fa-angle-down"></i></span>#}
+          {##}
+          {#            <ul class="mega-menu">#}
+          {#              <li>#}
+          {#                <ul>#}
+          {##}
+          {#                  <li><a href="index.html"><span class="menu-text">MaxCoach Education <span#}
+          {#                          class="badge">Hot</span></span></a></li>#}
+          {#                  <li><a href="index-2.html"><span class="menu-text">Course Portal</span></a></li>#}
+          {#                  <li><a href="index-3.html"><span class="menu-text">Distant Learning <span#}
+          {#                          class="badge">Hot</span></span></a></li>#}
+          {#                  <li><a href="index-4.html"><span class="menu-text">Multimedia Pedagogy</span></a></li>#}
+          {#                  <li><a href="index-5.html"><span class="menu-text">Modern Schooling</span></a></li>#}
+          {#                  <li><a href="index-6.html"><span class="menu-text">Remote Training</span></a></li>#}
+          {#                </ul>#}
+          {#              </li>#}
+          {#              <li>#}
+          {#                <ul>#}
+          {#                  <li><a href="index-7.html"><span class="menu-text">Health Coaching</span></a></li>#}
+          {#                  <li><a href="index-8.html"><span class="menu-text">Gym Coaching</span></a></li>#}
+          {#                  <li><a href="index-9.html"><span class="menu-text">Business</span></a></li>#}
+          {#                  <li><a href="index-10.html"><span class="menu-text">Artist <span#}
+          {#                          class="badge primary">New</span></span></a></li>#}
+          {#                  <li><a href="index-11.html"><span class="menu-text">Kitchen Coach <span#}
+          {#                          class="badge primary">New</span></span></a></li>#}
+          {#                  <li><a href="index-12.html"><span class="menu-text">Motivation <span class="badge primary">New</span></span></a>#}
+          {#                  </li>#}
+          {#                </ul>#}
+          {#              </li>#}
+          {#              <li class="menu-item-50">#}
+          {#                <ul>#}
+          {#                  <li><a href="#"><img src="assets/images/menu/mega-menu.jpg" alt="menu-image"></a></li>#}
+          {#                </ul>#}
+          {#              </li>#}
+          {#            </ul>#}
+          {#          </li>#}
+          {#          <li class="has-children">#}
+          {#            <a href="#"><span class="menu-text">Pages</span></a>#}
+          {#            <span class="menu-toggle"><i class="far fa-angle-down"></i></span>#}
+          {#            <ul class="sub-menu">#}
+          {#              <li><a href="start-here.html"><span class="menu-text">Start Here</span></a></li>#}
+          {#              <li><a href="success-story.html"><span class="menu-text">Success Story</span></a></li>#}
+          {#              <li><a href="about-me.html"><span class="menu-text">About me</span></a></li>#}
+          {#              <li><a href="about-us-1.html"><span class="menu-text">About us 01</span></a></li>#}
+          {#              <li><a href="about-us-2.html"><span class="menu-text">About us 02</span></a></li>#}
+          {#              <li><a href="about-us-3.html"><span class="menu-text">About us 03</span></a></li>#}
+          {#              <li><a href="contact-me.html"><span class="menu-text">Contact me</span></a></li>#}
+          {#              <li><a href="contact-us.html"><span class="menu-text">Contact us</span></a></li>#}
+          {#              <li><a href="purchase-guide.html"><span class="menu-text">Purchase Guide</span></a></li>#}
+          {#              <li><a href="privacy-policy.html"><span class="menu-text">Privacy Policy</span></a></li>#}
+          {#              <li><a href="terms-of-service.html"><span class="menu-text">Terms of Service</span></a></li>#}
+          {#            </ul>#}
+          {#          </li>#}
+          {#          <li class="has-children">#}
+          {#            <a href="#"><span class="menu-text">Courses</span></a>#}
+          {#            <span class="menu-toggle"><i class="far fa-angle-down"></i></span>#}
+          {#            <ul class="sub-menu">#}
+          {#              <li><a href="courses-grid-1.html"><span class="menu-text">Courses Grid 01</span></a></li>#}
+          {#              <li><a href="courses-grid-2.html"><span class="menu-text">Courses Grid 02</span></a></li>#}
+          {#              <li><a href="courses-grid-3.html"><span class="menu-text">Courses Grid 03</span></a></li>#}
+          {#              <li><a href="membership-levels.html"><span class="menu-text">Membership Levels</span></a></li>#}
+          {#              <li><a href="become-a-teacher.html"><span class="menu-text">Become a Teacher</span></a></li>#}
+          {#              <li><a href="profile.html"><span class="menu-text">Profile</span></a></li>#}
+          {#              <li><a href="checkout.html"><span class="menu-text">Checkout</span></a></li>#}
+          {#              <li class="has-children">#}
+          {#                <a href="course-details-sticky-feature-bar.html"><span class="menu-text">Single Layout</span></a>#}
+          {#                <span class="menu-toggle"><i class="far fa-angle-down"></i></span>#}
+          {#                <ul class="sub-menu">#}
+          {#                  <li><a href="course-details-free.html"><span class="menu-text">Free Course</span></a></li>#}
+          {#                  <li><a href="course-details-sticky-feature-bar.html"><span#}
+          {#                          class="menu-text">Sticky Features Bar</span></a></li>#}
+          {#                  <li><a href="course-details-standard-sidebar.html"><span class="menu-text">Standard Sidebar</span></a>#}
+          {#                  </li>#}
+          {#                  <li><a href="course-details-no-sidebar.html"><span class="menu-text">No Sidebar</span></a></li>#}
+          {#                </ul>#}
+          {#              </li>#}
+          {##}
+          {#            </ul>#}
+          {#          </li>#}
+          {#          <li class="has-children">#}
+          {#            <a href="#"><span class="menu-text">Event</span></a>#}
+          {#            <span class="menu-toggle"><i class="far fa-angle-down"></i></span>#}
+          {#            <ul class="sub-menu">#}
+          {#              <li><a href="event.html"><span class="menu-text">Event</span></a></li>#}
+          {#              <li><a href="zoom-meetings.html"><span class="menu-text">Zoom Meetings</span></a></li>#}
+          {#              <li><a href="event-details.html"><span class="menu-text">Event Details</span></a></li>#}
+          {#              <li><a href="zoom-event-details.html"><span class="menu-text">Zoom Meeting Details</span></a></li>#}
+          {#            </ul>#}
+          {#          </li>#}
+          {#          <li class="has-children">#}
+          {#            <a href="#"><span class="menu-text">Blog</span></a>#}
+          {#            <span class="menu-toggle"><i class="far fa-angle-down"></i></span>#}
+          {#            <ul class="sub-menu">#}
+          {#              <li><a href="blog-grid.html"><span class="menu-text">Blog Grid</span></a></li>#}
+          {#              <li><a href="blog-masonry.html"><span class="menu-text">Blog Masonry</span></a></li>#}
+          {#              <li><a href="blog-classic.html"><span class="menu-text">Blog Classic</span></a></li>#}
+          {#              <li><a href="blog-list.html"><span class="menu-text">Blog List</span></a></li>#}
+          {#            </ul>#}
+          {#          </li>#}
+          {#          <li class="has-children">#}
+          {#            <a href="#"><span class="menu-text">Shop</span></a>#}
+          {#            <span class="menu-toggle"><i class="far fa-angle-down"></i></span>#}
+          {#            <ul class="sub-menu">#}
+          {#              <li><a href="shop.html"><span class="menu-text">Shop Left Sidebar</span></a></li>#}
+          {#              <li><a href="shop-right-sidebar.html"><span class="menu-text">Shop Right Sidebar</span></a></li>#}
+          {#              <li><a href="shopping-cart.html"><span class="menu-text">Cart</span></a></li>#}
+          {#              <li><a href="shopping-cart-empty.html"><span class="menu-text">Cart Empty</span></a></li>#}
+          {#              <li><a href="wishlist.html"><span class="menu-text">Wishlist</span></a></li>#}
+          {#              <li><a href="product-details.html"><span class="menu-text">Single Product</span></a></li>#}
+          {#              <li><a href="my-account.html"><span class="menu-text">My Account</span></a></li>#}
+          {#              <li><a href="login-register.html"><span class="menu-text">Login Register</span></a></li>#}
+          {#            </ul>#}
+          {#          </li>#}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+{% block modal %}{% endblock modal %}
+{% include 'layouts/js.html' %}
+{% block control_modal %}
+  <script>
+    function abrir_modal(url) {
+      $("#popup").load(url, function () {
+        $(this).modal({
+          backdrop: 'static',
+          keyboard: false
+        })
+        $(this).modal('show');
+      });
+      return false;
+    }
+
+    function cerrar_modal() {
+      $("#exampleModal").modal('hide');
+      return false;
+    }
+
+    function abrir(url) {
+      $("#exampleModal").load(url, function () {
+        $(this).modal({
+          backdrop: 'static',
+          keyboard: false
+        })
+        $(this).modal('show');
+      });
+      return false;
+    }
+
+    $('#myModal').modal('hide');
+
+    function mensajes(mensaje, icon) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+      Toast.fire({
+        icon: icon,
+        title: mensaje
+      });
+    }
+
+    {% if messages %}
+      {% for message in messages %}
+        mensajes('{{ message }}', '{{ message.tags }}')
+      {% endfor %}
+    {% endif %}
+  </script>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+</body>
+
+</html>

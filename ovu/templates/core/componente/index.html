@@ -1,0 +1,103 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  Componentes
+{% endblock %}
+
+{% block main_content %}
+
+  <!-- Page Banner Section Start -->
+  <div class="page-banner-section section section-padding-200 oscurecer"
+       data-bg-image="{% static 'images/page-banner/bg.jpg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="page-banner-title">
+            <h1 class="title"></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Banner Section End -->
+
+  <!-- Page Title Section Start -->
+  <div class="page-title-section section">
+    <div class="page-title">
+      <div class="container">
+        <h1 class="title">Componentes</h1>
+      </div>
+    </div>
+    {#    <div class="page-breadcrumb">#}
+    {#      <div class="container">#}
+    {#        <ul class="breadcrumb">#}
+    {#          <li><a href="index.html">Home</a></li>#}
+    {#          <li class="current">Courses Grid 02</li>#}
+    {#        </ul>#}
+    {#      </div>#}
+    {#    </div>#}
+  </div>
+  <!-- Page Title Section End -->
+
+  <!-- Course Section Start -->
+  <div class="section section-padding-bottom">
+    <div class="container">
+
+      <!-- Course Top Bar Start -->
+      {#      <div class="row justify-content-between align-items-center max-mb-20">#}
+      {#        <div class="col-sm-auto col-12 max-mb-10">#}
+      {#          <p class="result-count">We found <span>22</span> courses available for you</p>#}
+      {#        </div>#}
+      {#        <div class="col-sm-auto col-12 max-mb-10">#}
+      {#          <select class="sort-by">#}
+      {#            <option selected="selected">Default</option>#}
+      {#            <option value="popularity">Popularity</option>#}
+      {#            <option value="date">Latest</option>#}
+      {#            <option value="price">Price: low to high</option>#}
+      {#            <option value="price-desc">Price: high to low</option>#}
+      {#          </select>#}
+      {#        </div>#}
+      {#      </div>#}
+      <!-- Course Top Bar End -->
+
+      <!-- Courses Wrapper Start -->
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 max-mb-n30">
+        {% for componente in componentes %}
+          <!-- Course Start -->
+          <div class="col max-mb-30" data-aos="fade-up">
+            <div class="course-2">
+              <div class="thumbnail">
+                <a href="{% url 'core:componente_detalles' componente.pk %}" class="image"><img style="max-height: 370px"
+                                                                                  src="{{ componente.image }}"
+                                                                                  alt="Course Image"></a>
+              </div>
+              <div class="info">
+                <span class="price">{{ componente.codigo }}</span>
+                {#                <span class="date">Jan 15, 2020</span>#}
+                <h3 class="title"><a
+                        href="{% url 'core:componente_detalles' componente.pk %}">{{ componente.nombre }}</a></h3>
+                <ul class="meta">
+                  <li><i class="far fa-file-alt"></i>{{ componente.total_indicadores }} Indicadores</li>
+                  {#                  <li><i class="far fa-user-alt"></i>51 Students</li>#}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Course End -->
+        {% endfor %}
+
+      </div>
+      <!-- Courses Wrapper End -->
+
+      {#      <div class="row max-mt-50">#}
+      {#        <div class="col text-center">#}
+      {#          <a href="JavaScript:Void(0);" class="btn btn-outline-primary load-more-btn">Load More <i#}
+      {#                  class="fal fa-redo ml-3"></i></a>#}
+      {#        </div>#}
+      {#      </div>#}
+
+    </div>
+  </div>
+  <!-- Course Section End -->
+{% endblock %}
